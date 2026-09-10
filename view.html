@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sport GT - DriveX</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: #0a0a0a; color: #fff; }
+
+        /* Hero Banner */
+        .car-hero {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            overflow: hidden;
+        }
+        .car-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+        .car-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 40px 40px;
+            background: linear-gradient(to top, #0a0a0a 0%, transparent 100%);
+        }
+        .car-hero-overlay h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .car-hero-overlay .tagline {
+            font-size: 1.1rem;
+            color: #aaa;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Price Card */
+        .price-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .price-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(231,76,60,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .price-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .price-value {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e74c3c, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .price-note {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        .price-badge {
+            display: inline-block;
+            background: rgba(231,76,60,0.15);
+            color: #ff6b6b;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid rgba(231,76,60,0.3);
+        }
+
+        /* Specs Grid */
+        .spec-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .spec-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(231,76,60,0.3);
+            transform: translateY(-4px);
+        }
+        .spec-icon {
+            font-size: 1.8rem;
+            color: #e74c3c;
+            margin-bottom: 12px;
+        }
+        .spec-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .spec-label {
+            font-size: 0.78rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Description */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #e74c3c, #ff6b6b);
+            border-radius: 2px;
+        }
+        .desc-text {
+            color: #bbb;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        /* Gallery */
+        .gallery-img {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.4s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.03);
+            border-color: rgba(231,76,60,0.3);
+            box-shadow: 0 10px 40px rgba(231,76,60,0.15);
+        }
+        .gallery-img img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Buttons */
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+        }
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(231,76,60,0.4);
+            color: #fff;
+        }
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.2);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+        }
+        .btn-outline-custom:hover {
+            border-color: #e74c3c;
+            color: #e74c3c;
+            transform: translateY(-2px);
+        }
+
+        /* Divider */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+            margin: 50px 0;
+        }
+
+        /* Fade-in animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up:nth-child(2) { animation-delay: 0.15s; }
+        .fade-up:nth-child(3) { animation-delay: 0.3s; }
+        .fade-up:nth-child(4) { animation-delay: 0.45s; }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Banner -->
+    <div class="car-hero">
+        <img src="view photo 1.avif" alt="Sport GT">
+        <div class="car-hero-overlay">
+            <div class="container">
+                <p class="tagline mb-2">DriveX Performance Series</p>
+                <h1>Sport GT</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+
+        <!-- Price + Specs Row -->
+        <div class="row g-4 mb-5 fade-up">
+            <div class="col-lg-5">
+                <div class="price-section h-100">
+                    <span class="price-badge mb-3">LIMITED EDITION</span>
+                    <p class="price-label mt-3">Starting Price</p>
+                    <h2 class="price-value">₹1.85 Crore</h2>
+                    <p class="price-note">*Ex-showroom price. Taxes & registration extra.</p>
+                    <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
+                    <div class="d-flex gap-2 flex-wrap">
+                        <span class="price-badge">EMI from ₹2.8L/mo</span>
+                        <span class="price-badge">0% Down Payment</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="row g-3 h-100">
+                    <div class="col-6 col-md-3">
+                        <div class="spec-card h-100">
+                            <div class="spec-icon"><i class="bi bi-speedometer2"></i></div>
+                            <div class="spec-value">620</div>
+                            <div class="spec-label">BHP</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="spec-card h-100">
+                            <div class="spec-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+                            <div class="spec-value">3.2s</div>
+                            <div class="spec-label">0-100 KM/H</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="spec-card h-100">
+                            <div class="spec-icon"><i class="bi bi-fuel-pump-fill"></i></div>
+                            <div class="spec-value">V8</div>
+                            <div class="spec-label">ENGINE</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="spec-card h-100">
+                            <div class="spec-icon"><i class="bi bi-arrow-up-right-circle-fill"></i></div>
+                            <div class="spec-value">325</div>
+                            <div class="spec-label">TOP SPEED</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Description -->
+        <div class="row fade-up">
+            <div class="col-lg-8">
+                <h2 class="section-title">About This Car</h2>
+                <p class="desc-text mt-4">
+                    <strong>A grand tourer (GT)</strong> is a type of car that is designed for
+                    high speed, long-distance driving with luxury specifications. The most common format is a front-engine,
+                    rear-wheel-drive two-door coupé with either a two-seat or a 2+2 arrangement. Grand tourers are often the coupé
+                    derivative of luxury saloons or sedans. Some models, such as the Ferrari 250 GT, Jaguar E-Type, and Aston Martin
+                    DB5, are considered classic examples of grand tourers.
+                </p>
+                <p class="desc-text">
+                    The term is a near-calque from the Italian language phrase gran turismo, which became popular in the English
+                    language in the 1950s, evolving from fast touring cars and streamlined closed sports cars during the 1930s.
+                </p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Origin Section -->
+        <div class="row fade-up">
+            <div class="col-lg-8">
+                <h2 class="section-title">Origin In Europe</h2>
+                <p class="desc-text mt-4">
+                    The grand touring car concept originated in Europe in the early 1950s, especially with the 1951 introduction
+                    of the Lancia Aurelia B20 GT, and features notable luminaries of Italian automotive history such as
+                    Vittorio Jano, Enzo Ferrari and Johnny Lurani. Motorsports became important in the evolution of the
+                    grand touring concept, and grand touring entries are important in endurance sports-car racing.
+                </p>
+                <p class="desc-text">
+                    In the post-war United States, manufacturers were less inclined to adopt the "ethos of the GT car",
+                    preferring to build cars "suited to their long, straight, smooth roads and labor-saving lifestyles"
+                    with wide availability of powerful straight-six and V8 engines. Classic grand-touring cars from the post-war
+                    era have since become valuable cars among wealthy collectors.
+                </p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Gallery -->
+        <div class="fade-up">
+            <h2 class="section-title mb-4">Gallery</h2>
+            <div class="row g-4 mt-2">
+                <div class="col-md-6">
+                    <div class="gallery-img">
+                        <img src="view 2.jpg" alt="Sport GT Side View">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="gallery-img">
+                        <img src="view 3.jpg" alt="Sport GT Rear View">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- CTA -->
+        <div class="text-center fade-up py-4">
+            <h3 class="mb-4" style="font-weight: 700;">Interested in Sport GT?</h3>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="index.html" class="btn-outline-custom">
+                    <i class="bi bi-arrow-left me-2"></i>GO BACK
+                </a>
+                <a href="index.html#contact" class="btn-primary-custom">
+                    <i class="bi bi-telephone-fill me-2"></i>BOOK NOW
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="container-fluid" style="background: #111; border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="container text-center py-4">
+            <p style="color: #555; margin: 0; font-size: 0.9rem;">© 2026 DriveX. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

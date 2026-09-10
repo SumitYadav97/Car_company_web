@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Titanium Exhaust Range - Lamborghini | DriveX</title>
+    <meta name="description" content="Lamborghini Titanium Exhaust Range — lightweight titanium exhaust systems delivering an unmistakable Lamborghini roar.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: #0a0a0a; color: #fff; }
+
+        .car-hero {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            overflow: hidden;
+        }
+        .car-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+        .car-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 40px 40px;
+            background: linear-gradient(to top, #0a0a0a 0%, transparent 100%);
+        }
+        .car-hero-overlay h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .car-hero-overlay .tagline {
+            font-size: 1.1rem;
+            color: #aaa;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .exhaust-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #1a1515 50%, #251a1a 100%);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,140,50,0.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .exhaust-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,140,50,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .exhaust-badge {
+            display: inline-block;
+            background: rgba(255,140,50,0.12);
+            color: #ffaa50;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,140,50,0.25);
+        }
+        .exhaust-value {
+            font-size: 2.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff8c32, #ffaa50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 15px;
+        }
+        .exhaust-note {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .tech-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .tech-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,140,50,0.3);
+            transform: translateY(-4px);
+        }
+        .tech-icon {
+            font-size: 2rem;
+            color: #ff8c32;
+            margin-bottom: 12px;
+        }
+        .tech-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .tech-desc {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #ff8c32, #ffaa50);
+            border-radius: 2px;
+        }
+        .desc-text {
+            color: #bbb;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .feature-item i {
+            color: #ffaa50;
+            font-size: 1.2rem;
+            min-width: 24px;
+        }
+        .feature-item span {
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #ff8c32, #cc6a18);
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+        }
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,140,50,0.4);
+            color: #fff;
+        }
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.2);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+        }
+        .btn-outline-custom:hover {
+            border-color: #ff8c32;
+            color: #ffaa50;
+            transform: translateY(-2px);
+        }
+
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+            margin: 50px 0;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up:nth-child(2) { animation-delay: 0.15s; }
+        .fade-up:nth-child(3) { animation-delay: 0.3s; }
+        .fade-up:nth-child(4) { animation-delay: 0.45s; }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Banner -->
+    <div class="car-hero">
+        <img src="exhaust lembo.webp" alt="Lamborghini Titanium Exhaust">
+        <div class="car-hero-overlay">
+            <div class="container">
+                <p class="tagline mb-2">Performance Accessories</p>
+                <h1>Titanium Exhaust Range</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+
+        <!-- Exhaust Intro + Tech Cards -->
+        <div class="row g-4 mb-5 fade-up">
+            <div class="col-lg-5">
+                <div class="exhaust-section h-100">
+                    <span class="exhaust-badge mb-3">PERFORMANCE</span>
+                    <h2 class="exhaust-value">Hear the Roar</h2>
+                    <p class="desc-text mt-3" style="font-size: 0.95rem;">
+                        Forged from aerospace-grade titanium, the Lamborghini exhaust range delivers weight savings, 
+                        enhanced performance, and the most spine-tingling exhaust note on the planet.
+                    </p>
+                    <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
+                    <div class="d-flex gap-2 flex-wrap">
+                        <span class="exhaust-badge">-40% Weight</span>
+                        <span class="exhaust-badge">+15 HP</span>
+                        <span class="exhaust-badge">Titanium Grade 2</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="row g-3 h-100">
+                    <div class="col-6">
+                        <div class="tech-card h-100">
+                            <div class="tech-icon"><i class="bi bi-feather"></i></div>
+                            <div class="tech-title">Ultra Lightweight</div>
+                            <div class="tech-desc">40% lighter than standard steel exhaust systems for better performance</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="tech-card h-100">
+                            <div class="tech-icon"><i class="bi bi-soundwave"></i></div>
+                            <div class="tech-title">Signature Sound</div>
+                            <div class="tech-desc">Tuned to amplify the unmistakable Lamborghini V10/V12 roar</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="tech-card h-100">
+                            <div class="tech-icon"><i class="bi bi-thermometer-high"></i></div>
+                            <div class="tech-title">Heat Resistant</div>
+                            <div class="tech-desc">Withstands extreme temperatures up to 800°C without degradation</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="tech-card h-100">
+                            <div class="tech-icon"><i class="bi bi-shield-check"></i></div>
+                            <div class="tech-title">OEM Certified</div>
+                            <div class="tech-desc">Factory-approved fitment with full manufacturer warranty coverage</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Description -->
+        <div class="row fade-up">
+            <div class="col-lg-8">
+                <h2 class="section-title">Engineering Excellence</h2>
+                <p class="desc-text mt-4">
+                    The <strong>Lamborghini Titanium Exhaust Range</strong> represents the pinnacle of automotive exhaust 
+                    engineering. Each system is precision-crafted from aerospace-grade titanium, offering a dramatic 
+                    reduction in weight while enhancing both power output and the iconic Lamborghini exhaust note.
+                </p>
+                <p class="desc-text">
+                    Developed in collaboration with Lamborghini's Squadra Corse motorsport division, these exhaust systems 
+                    bring race-proven technology to the road. The unique titanium construction not only reduces unsprung 
+                    weight but creates a harmonic frequency that produces the most emotionally charged exhaust sound 
+                    in the supercar world.
+                </p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Features -->
+        <div class="row fade-up">
+            <div class="col-lg-8">
+                <h2 class="section-title">Technical Specifications</h2>
+                <div class="mt-4">
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Aerospace-Grade Titanium (Grade 2) Construction</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>40% Weight Reduction vs. Standard Stainless Steel</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>+15 HP Power Gain with Optimised Gas Flow</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Electronically Controlled Valve System for Dual Sound Modes</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Available for Huracán, Revuelto & Urus Models</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Signature Blue Titanium Heat Tint Finish</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- CTA -->
+        <div class="text-center fade-up py-4">
+            <h3 class="mb-4" style="font-weight: 700;">Upgrade Your Lamborghini</h3>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="index.html" class="btn-outline-custom">
+                    <i class="bi bi-arrow-left me-2"></i>GO BACK
+                </a>
+                <a href="index.html#contact" class="btn-primary-custom">
+                    <i class="bi bi-cart-fill me-2"></i>ORDER NOW
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="container-fluid" style="background: #111; border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="container text-center py-4">
+            <p style="color: #555; margin: 0; font-size: 0.9rem;">© 2026 DriveX. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

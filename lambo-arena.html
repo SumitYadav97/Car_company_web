@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lamborghini Arena - DriveX</title>
+    <meta name="description" content="Lamborghini Arena — experience the thrill of pure racing DNA born from decades of motorsport dominance.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: #0a0a0a; color: #fff; }
+
+        .car-hero {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            overflow: hidden;
+        }
+        .car-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.55);
+        }
+        .car-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 40px 40px;
+            background: linear-gradient(to top, #0a0a0a 0%, transparent 100%);
+        }
+        .car-hero-overlay h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .car-hero-overlay .tagline {
+            font-size: 1.1rem;
+            color: #aaa;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .arena-section {
+            background: linear-gradient(135deg, #1a0a0a 0%, #2a1010 50%, #3a1515 100%);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(220,50,50,0.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .arena-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(220,50,50,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .arena-badge {
+            display: inline-block;
+            background: rgba(220,50,50,0.15);
+            color: #ff6b6b;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid rgba(220,50,50,0.3);
+        }
+        .arena-value {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #dc3232, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 15px;
+        }
+
+        .race-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .race-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(220,50,50,0.3);
+            transform: translateY(-4px);
+        }
+        .race-icon {
+            font-size: 2rem;
+            color: #dc3232;
+            margin-bottom: 12px;
+        }
+        .race-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .race-desc {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #dc3232, #ff6b6b);
+            border-radius: 2px;
+        }
+        .desc-text {
+            color: #bbb;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .feature-item i {
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            min-width: 24px;
+        }
+        .feature-item span {
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #dc3232, #a02020);
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+        }
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(220,50,50,0.4);
+            color: #fff;
+        }
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.2);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+        }
+        .btn-outline-custom:hover {
+            border-color: #dc3232;
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+            margin: 50px 0;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up:nth-child(2) { animation-delay: 0.15s; }
+        .fade-up:nth-child(3) { animation-delay: 0.3s; }
+        .fade-up:nth-child(4) { animation-delay: 0.45s; }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Banner -->
+    <div class="car-hero">
+        <img src="racing.webp" alt="Lamborghini Arena Racing">
+        <div class="car-hero-overlay">
+            <div class="container">
+                <p class="tagline mb-2">Motorsport Heritage</p>
+                <h1>Lamborghini Arena</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+
+        <!-- Arena Intro + Race Cards -->
+        <div class="row g-4 mb-5 fade-up">
+            <div class="col-lg-5">
+                <div class="arena-section h-100">
+                    <span class="arena-badge mb-3">MOTORSPORT</span>
+                    <h2 class="arena-value">Born on the Track</h2>
+                    <p class="desc-text mt-3" style="font-size: 0.95rem;">
+                        Lamborghini Arena brings the raw excitement of professional motorsport to every enthusiast. 
+                        From Super Trofeo to GT3, witness the raging bull dominate.
+                    </p>
+                    <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
+                    <div class="d-flex gap-2 flex-wrap">
+                        <span class="arena-badge">Super Trofeo</span>
+                        <span class="arena-badge">GT3</span>
+                        <span class="arena-badge">E-Sports</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="row g-3 h-100">
+                    <div class="col-6">
+                        <div class="race-card h-100">
+                            <div class="race-icon"><i class="bi bi-flag-fill"></i></div>
+                            <div class="race-title">Super Trofeo</div>
+                            <div class="race-desc">The world's fastest one-make championship with the Huracán Super Trofeo EVO2</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="race-card h-100">
+                            <div class="race-icon"><i class="bi bi-trophy-fill"></i></div>
+                            <div class="race-title">GT3 Racing</div>
+                            <div class="race-desc">Competing at the highest level of GT endurance racing worldwide</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="race-card h-100">
+                            <div class="race-icon"><i class="bi bi-controller"></i></div>
+                            <div class="race-title">E-Sports</div>
+                            <div class="race-desc">The Real Race — Lamborghini's official sim racing competition</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="race-card h-100">
+                            <div class="race-icon"><i class="bi bi-mortarboard-fill"></i></div>
+                            <div class="race-title">Accademia</div>
+                            <div class="race-desc">Learn to master your Lamborghini with professional racing instructors</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Description -->
+        <div class="row fade-up">
+            <div class="col-lg-8">
+                <h2 class="section-title">The Arena Experience</h2>
+                <p class="desc-text mt-4">
+                    <strong>Lamborghini Arena</strong> is where passion meets performance at its most intense. It is the 
+                    beating heart of Lamborghini's motorsport program — a world where the boundaries of speed, technology, 
+                    and human ambition are pushed to the absolute limit.
+                </p>
+                <p class="desc-text">
+                    Whether you're watching the Huracán Super Trofeo blaze around Imola, or stepping into a GT3 cockpit 
+                    yourself at Lamborghini Accademia, the Arena delivers an adrenaline-fueled experience that connects 
+                    you directly to the soul of the raging bull.
+                </p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Features -->
+        <div class="row fade-up">
+            <div class="col-lg-8">
+                <h2 class="section-title">Arena Highlights</h2>
+                <div class="mt-4">
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Huracán Super Trofeo EVO2 — 620 HP V10 Race Machine</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>24H of Daytona, Spa & Nürburgring Endurance Race Wins</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Global Championship Series Across 3 Continents</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Lamborghini Accademia — Track Day Driving Experiences</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Squadra Corse — Dedicated Motorsport Division Since 2013</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>The Real Race — Official Lamborghini E-Sports Tournament</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- CTA -->
+        <div class="text-center fade-up py-4">
+            <h3 class="mb-4" style="font-weight: 700;">Enter the Arena</h3>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="index.html" class="btn-outline-custom">
+                    <i class="bi bi-arrow-left me-2"></i>GO BACK
+                </a>
+                <a href="index.html#contact" class="btn-primary-custom">
+                    <i class="bi bi-flag-fill me-2"></i>JOIN THE RACE
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="container-fluid" style="background: #111; border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="container text-center py-4">
+            <p style="color: #555; margin: 0; font-size: 0.9rem;">© 2026 DriveX. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
