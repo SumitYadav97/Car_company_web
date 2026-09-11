@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Luxury Sedan - DriveX</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: #0a0a0a; color: #fff; }
+
+        .car-hero {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            overflow: hidden;
+        }
+        .car-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+        .car-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 40px 40px;
+            background: linear-gradient(to top, #0a0a0a 0%, transparent 100%);
+        }
+        .car-hero-overlay h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .car-hero-overlay .tagline {
+            font-size: 1.1rem;
+            color: #aaa;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .price-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .price-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(41,128,185,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .price-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .price-value {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2980b9, #6dd5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .price-note {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        .price-badge {
+            display: inline-block;
+            background: rgba(41,128,185,0.15);
+            color: #6dd5fa;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid rgba(41,128,185,0.3);
+        }
+
+        .spec-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .spec-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(41,128,185,0.3);
+            transform: translateY(-4px);
+        }
+        .spec-icon {
+            font-size: 1.8rem;
+            color: #2980b9;
+            margin-bottom: 12px;
+        }
+        .spec-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .spec-label {
+            font-size: 0.78rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #2980b9, #6dd5fa);
+            border-radius: 2px;
+        }
+        .desc-text {
+            color: #bbb;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .feature-item i {
+            color: #6dd5fa;
+            font-size: 1.2rem;
+            min-width: 24px;
+        }
+        .feature-item span {
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #2980b9, #2471a3);
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+        }
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(41,128,185,0.4);
+            color: #fff;
+        }
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.2);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+        }
+        .btn-outline-custom:hover {
+            border-color: #2980b9;
+            color: #6dd5fa;
+            transform: translateY(-2px);
+        }
+
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+            margin: 50px 0;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up:nth-child(2) { animation-delay: 0.15s; }
+        .fade-up:nth-child(3) { animation-delay: 0.3s; }
+        .fade-up:nth-child(4) { animation-delay: 0.45s; }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Banner -->
+    <div class="car-hero">
+        <img src="blue.jfif" alt="Luxury Sedan">
+        <div class="car-hero-overlay">
+            <div class="container">
+                <p class="tagline mb-2">DriveX Luxury Collection</p>
+                <h1>Luxury Sedan</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+
+        <!-- Price + Specs Row -->
+        <div class="row g-4 mb-5 fade-up">
+            <div class="col-lg-5">
+                <div class="price-section h-100">
+                    <span class="price-badge mb-3">PREMIUM CLASS</span>
+                    <p class="price-label mt-3">Starting Price</p>
+                    <h2 class="price-value">₹95.50 Lakh</h2>
+                    <p class="price-note">*Ex-showroom price. Taxes & registration extra.</p>
+                    <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
+                    <div class="d-flex gap-2 flex-wrap">
+                        <span class="price-badge">EMI from ₹1.5L/mo</span>
+                        <span class="price-badge">Free Insurance</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="row g-3 h-100">
+                    <div class="col-6 col-md-3">
+                        <div class="spec-card h-100">
+                            <div class="spec-icon"><i class="bi bi-speedometer2"></i></div>
+                            <div class="spec-value">450</div>
+                            <div class="spec-label">BHP</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="spec-card h-100">
+                            <div class="spec-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+                            <div class="spec-value">4.5s</div>
+                            <div class="spec-label">0-100 KM/H</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="spec-card h-100">
+                            <div class="spec-icon"><i class="bi bi-fuel-pump-fill"></i></div>
+                            <div class="spec-value">V6</div>
+                            <div class="spec-label">ENGINE</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="spec-card h-100">
+                            <div class="spec-icon"><i class="bi bi-arrow-up-right-circle-fill"></i></div>
+                            <div class="spec-value">280</div>
+                            <div class="spec-label">TOP SPEED</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Description -->
+        <div class="row fade-up">
+            <div class="col-lg-8">
+                <h2 class="section-title">About This Car</h2>
+                <p class="desc-text mt-4">
+                    The <strong>Luxury Sedan</strong> blends refined elegance with raw power. Designed for executives and 
+                    automotive enthusiasts who demand nothing but the best, this sedan delivers premium comfort with a 
+                    powerful engine that makes every drive an unforgettable experience.
+                </p>
+                <p class="desc-text">
+                    With its sculpted body lines, aerodynamic silhouette, and handcrafted interior, this vehicle redefines
+                    what it means to travel in style. Every detail has been meticulously crafted to provide the ultimate
+                    driving and passenger experience.
+                </p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Features -->
+        <div class="row fade-up">
+            <div class="col-lg-8">
+                <h2 class="section-title">Key Features</h2>
+                <div class="mt-4">
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Adaptive Air Suspension with Dynamic Ride Control</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Handstitched Nappa Leather Interior with Heated & Ventilated Seats</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>12.3" Dual Touchscreen Infotainment with Wireless Apple CarPlay & Android Auto</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>360° Surround Camera with Parking Assist & Night Vision</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Bang & Olufsen 3D Surround Sound System — 19 Speakers</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Level 2 Autonomous Driving with Adaptive Cruise Control</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- CTA -->
+        <div class="text-center fade-up py-4">
+            <h3 class="mb-4" style="font-weight: 700;">Interested in Luxury Sedan?</h3>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="index.html" class="btn-outline-custom">
+                    <i class="bi bi-arrow-left me-2"></i>GO BACK
+                </a>
+                <a href="index.html#contact" class="btn-primary-custom">
+                    <i class="bi bi-telephone-fill me-2"></i>BOOK NOW
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="container-fluid" style="background: #111; border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="container text-center py-4">
+            <p style="color: #555; margin: 0; font-size: 0.9rem;">© 2026 DriveX. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

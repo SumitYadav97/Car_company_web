@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inspiring Greatness - DriveX</title>
+    <meta name="description" content="Inspiring Greatness — A confluence of exceptional and extraordinary narratives, as revealed by Rolls-Royce.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: #0a0a0a; color: #fff; }
+
+        .car-hero {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            overflow: hidden;
+        }
+        .car-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+        .car-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 40px 40px;
+            background: linear-gradient(to top, #0a0a0a 0%, transparent 100%);
+        }
+        .car-hero-overlay h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .car-hero-overlay .tagline {
+            font-size: 1.1rem;
+            color: #aaa;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .story-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #1a1510 50%, #2a1f10 100%);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .story-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(200,140,50,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .story-badge {
+            display: inline-block;
+            background: rgba(200,140,50,0.15);
+            color: #e8c47a;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid rgba(200,140,50,0.3);
+        }
+        .story-value {
+            font-size: 2.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c88c32, #e8c47a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 15px;
+        }
+
+        .narrative-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 30px 24px;
+            transition: all 0.3s ease;
+        }
+        .narrative-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(200,140,50,0.3);
+            transform: translateY(-4px);
+        }
+        .narrative-icon {
+            font-size: 2rem;
+            color: #c88c32;
+            margin-bottom: 14px;
+        }
+        .narrative-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .narrative-desc {
+            font-size: 0.9rem;
+            color: #888;
+            line-height: 1.7;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #c88c32, #e8c47a);
+            border-radius: 2px;
+        }
+        .desc-text {
+            color: #bbb;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .timeline-year {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c88c32, #e8c47a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            min-width: 80px;
+        }
+        .timeline-content h6 {
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-size: 1rem;
+        }
+        .timeline-content p {
+            color: #888;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #c88c32, #a06a20);
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+        }
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(200,140,50,0.4);
+            color: #fff;
+        }
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.2);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+        }
+        .btn-outline-custom:hover {
+            border-color: #c88c32;
+            color: #e8c47a;
+            transform: translateY(-2px);
+        }
+
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+            margin: 50px 0;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up:nth-child(2) { animation-delay: 0.15s; }
+        .fade-up:nth-child(3) { animation-delay: 0.3s; }
+        .fade-up:nth-child(4) { animation-delay: 0.45s; }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Banner -->
+    <div class="car-hero">
+        <img src="brown.webp" alt="Inspiring Greatness">
+        <div class="car-hero-overlay">
+            <div class="container">
+                <p class="tagline mb-2">The Legacy of Excellence</p>
+                <h1>Inspiring Greatness</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+
+        <!-- Story Section + Narrative Cards -->
+        <div class="row g-4 mb-5 fade-up">
+            <div class="col-lg-5">
+                <div class="story-section h-100">
+                    <span class="story-badge mb-3">SINCE 1904</span>
+                    <h2 class="story-value">120+ Years of Greatness</h2>
+                    <p class="desc-text mt-3" style="font-size: 0.95rem;">
+                        A heritage built on the pursuit of perfection. From the meeting of Charles Rolls and 
+                        Henry Royce to the pinnacle of modern luxury.
+                    </p>
+                    <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
+                    <div class="d-flex gap-2 flex-wrap">
+                        <span class="story-badge">Heritage</span>
+                        <span class="story-badge">Innovation</span>
+                        <span class="story-badge">Craft</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="row g-3 h-100">
+                    <div class="col-6">
+                        <div class="narrative-card h-100">
+                            <div class="narrative-icon"><i class="bi bi-trophy-fill"></i></div>
+                            <div class="narrative-title">Unrivalled Legacy</div>
+                            <div class="narrative-desc">Over a century of creating the world's most celebrated motor cars</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="narrative-card h-100">
+                            <div class="narrative-icon"><i class="bi bi-gem"></i></div>
+                            <div class="narrative-title">Master Craftsmanship</div>
+                            <div class="narrative-desc">Every component hand-crafted by artisans at Goodwood, England</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="narrative-card h-100">
+                            <div class="narrative-icon"><i class="bi bi-lightbulb-fill"></i></div>
+                            <div class="narrative-title">Pioneering Innovation</div>
+                            <div class="narrative-desc">Leading the way in automotive engineering and luxury technology</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="narrative-card h-100">
+                            <div class="narrative-icon"><i class="bi bi-globe-americas"></i></div>
+                            <div class="narrative-title">Global Presence</div>
+                            <div class="narrative-desc">Delivering excellence to discerning patrons across every continent</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Description -->
+        <div class="row fade-up">
+            <div class="col-lg-8">
+                <h2 class="section-title">The Rolls-Royce Story</h2>
+                <p class="desc-text mt-4">
+                    <strong>Inspiring Greatness</strong> is not merely a tagline — it is the philosophy that has guided 
+                    Rolls-Royce since its founding. A confluence of exceptional and extraordinary narratives, this is 
+                    the story of individuals who dared to dream beyond the ordinary and create something truly timeless.
+                </p>
+                <p class="desc-text">
+                    From the Spirit of Ecstasy that graces every bonnet to the whisper-quiet cabins that have 
+                    become the benchmark of automotive luxury, every Rolls-Royce carries within it the spirit of 
+                    innovation, artistry, and an unwavering commitment to being the very best in the world.
+                </p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Timeline -->
+        <div class="row fade-up">
+            <div class="col-lg-8">
+                <h2 class="section-title">Heritage Timeline</h2>
+                <div class="mt-4">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1904</div>
+                        <div class="timeline-content">
+                            <h6>The Meeting</h6>
+                            <p>Charles Rolls and Henry Royce meet at the Midland Hotel, Manchester — the birth of a legend.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1907</div>
+                        <div class="timeline-content">
+                            <h6>Silver Ghost</h6>
+                            <p>The 40/50 HP — later named Silver Ghost — is hailed as "the best car in the world."</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1911</div>
+                        <div class="timeline-content">
+                            <h6>Spirit of Ecstasy</h6>
+                            <p>The iconic Spirit of Ecstasy mascot is designed by sculptor Charles Sykes.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2003</div>
+                        <div class="timeline-content">
+                            <h6>Home of Rolls-Royce</h6>
+                            <p>The new Rolls-Royce headquarters opens at Goodwood, England — a purpose-built temple of luxury.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-content">
+                            <h6>Spectre — Electric Future</h6>
+                            <p>Rolls-Royce Spectre becomes the brand's first fully electric motor car, beginning a new era.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- CTA -->
+        <div class="text-center fade-up py-4">
+            <h3 class="mb-4" style="font-weight: 700;">Discover the World of Rolls-Royce</h3>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="index.html" class="btn-outline-custom">
+                    <i class="bi bi-arrow-left me-2"></i>GO BACK
+                </a>
+                <a href="index.html#contact" class="btn-primary-custom">
+                    <i class="bi bi-book-fill me-2"></i>READ MORE
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="container-fluid" style="background: #111; border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="container text-center py-4">
+            <p style="color: #555; margin: 0; font-size: 0.9rem;">© 2026 DriveX. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
